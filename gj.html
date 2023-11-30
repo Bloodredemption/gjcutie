@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Terminal</title>
+  <style>
+    body {
+      font-family: 'VT323', monospace;
+      background-color: black;
+      color: #05BE56;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #terminal {
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    #text {
+      font-size: 150%;
+      overflow: hidden;
+      white-space: pre-wrap;
+      margin: 0;
+      letter-spacing: 2px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    #text::before {
+      content: "> ";
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    #redirectBtn {
+      display: none;
+      margin-top: 20px;
+      background-color: #05BE56;
+      color: black;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      #terminal {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">
+    <div style="margin-bottom: 20px; font-size: larger; font-family: 'VT323', monospace; font-size: 100%;">From: Nemo's Dad (EJ)</div>
+    <pre id="text" class="textCont"></pre>
+    <button id="redirectBtn" onclick="redirectToAnotherPage()">Open Gift</button>
+  </div>
+
+  <script>
+    const text = 'Hi gel,\n\nHappy 5th monthsary, my love! Time has flown by, but every moment with you has been nothing short of magical.\n\nYou have become my source of joy, and my favorite person. Your smile lights up my darkest days, and your presence turns ordinary moments into extraordinary ones. I cherish those moments of us being happy together.\n\nI am grateful for the love we have  nurtured, the growth we have shared, and the unwavering support we offer each other.\n\nI want you to know that you are not just my girlfriend but the future furr mommy of our future furr babies, and my greatest love.\n\nThank you for staying with someone like me. I appreciate you a lot. Happy 5 months, and I love you so muchh! <3'; // Your provided text
+    const paragraph = text.split("");
+
+    let i = 0;
+
+    function dashOut(arr) {
+      if (i < arr.length) {
+        document.querySelector(".textCont").textContent += arr[i];
+        i++;
+        setTimeout(function () {
+          dashOut(arr);
+        }, interval(arr[i]));
+      } else {
+        // Show the button once the typing is complete
+        document.getElementById('redirectBtn').style.display = 'inline-block';
+      }
+    }
+
+    function interval(letter) {
+      if (letter == ";" || letter == "." || letter == ",") {
+        return Math.floor(Math.random() * 500 + 500);
+      } else {
+        return Math.floor(Math.random() * 130 + 5);
+      }
+    }
+
+    function startFromBegin() {
+      i = 0;
+      dashOut(paragraph);
+    }
+
+    function redirectToAnotherPage() {
+      // Open the new page in another tab
+      window.open('https://bloodredemption.github.io/flowerformybaby/', '_blank');
+    }
+
+    startFromBegin();
+  </script>
+</body>
+</html>
